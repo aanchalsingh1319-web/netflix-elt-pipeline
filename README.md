@@ -1,5 +1,10 @@
 # Netflix ELT Pipeline (DuckDB + Python + SQL)
 
+
+## Why This Project?
+This project demonstrates how to design and implement a production-style ELT data pipeline locally using modern data engineering patterns (raw/staging layers, warehouse-based transformations, data quality monitoring, and automation-ready scheduling).
+
+
 ## Overview
 This project implements an end-to-end ELT (Extract, Load, Transform) data pipeline using Netflix content data. The pipeline ingests raw CSV data, stores it in a Parquet-based raw layer, loads it into an analytical warehouse (DuckDB), and transforms it into cleaned, analytics-ready tables using SQL. The project also includes data quality monitoring, logging, and automation-ready scheduling.
 
@@ -115,5 +120,6 @@ python python/07_monitor_pipeline.py
 - Add schema change detection
 
 - Migrate pipeline to cloud warehouse (Snowflake/BigQuery)
+
 
 
