@@ -74,6 +74,15 @@ netflix-elt-pipeline/
 └── README.md
 
 
+## 🔁 Incremental Loads (CDC Simulation)
+
+The pipeline supports CDC-style incremental updates for the analytics layer:
+- New records are inserted using primary-key detection (`show_id`)
+- Changed records are detected via hash-based comparisons and updated
+- Unchanged records are skipped
+- Jobs are idempotent and safe to re-run without creating duplicates
+- Schema drift is handled using explicit column mapping
+
 ## How to Run
 ```bash
 # Create virtual environment
@@ -120,6 +129,8 @@ python python/07_monitor_pipeline.py
 - Add schema change detection
 
 - Migrate pipeline to cloud warehouse (Snowflake/BigQuery)
+
+
 
 
 
