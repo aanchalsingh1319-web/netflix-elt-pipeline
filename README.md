@@ -83,6 +83,26 @@ The pipeline supports CDC-style incremental updates for the analytics layer:
 - Jobs are idempotent and safe to re-run without creating duplicates
 - Schema drift is handled using explicit column mapping
 
+## Analytics Layer (KPIs)
+
+Built an analytics layer on top of the incremental CDC table with KPI views:
+- Movies vs TV Shows distribution  
+- Titles by release year (growth trend)  
+- Top countries by content volume  
+- Ratings distribution  
+- Top genres (derived from listed_in)
+
+## Sample Insights
+
+- International content and dramas dominate the Netflix catalog, highlighting a strong global content strategy.
+- Genre trends over time show increasing diversification in recent years, with strong growth in international movies and documentaries.
+- Recent content growth is led by the United States, with notable momentum in India and South Korea, reflecting regional market expansion.
+
+## Advanced Analytics
+
+- Genre popularity trends over time (multi-valued field explosion + time-based aggregation)
+- Top countries contributing to recent content growth (last 5 years)
+  
 ## How to Run
 ```bash
 # Create virtual environment
@@ -129,6 +149,7 @@ python python/07_monitor_pipeline.py
 - Add schema change detection
 
 - Migrate pipeline to cloud warehouse (Snowflake/BigQuery)
+
 
 
 
