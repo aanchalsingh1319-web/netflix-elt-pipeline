@@ -92,6 +92,10 @@ Built an analytics layer on top of the incremental CDC table with KPI views:
 - Ratings distribution  
 - Top genres (derived from listed_in)
 
+  ## BI Dashboard (Looker Studio)
+
+Designed and built an interactive Looker Studio dashboard on top of BigQuery tables generated from the ELT pipeline. The dashboard presents content mix, growth trends, regional distribution, genre popularity, and recent growth markets in a clear, business-friendly layout.
+
 ## Sample Insights
 
 - International content and dramas dominate the Netflix catalog, highlighting a strong global content strategy.
@@ -149,6 +153,7 @@ python python/07_monitor_pipeline.py
 - Add schema change detection
 
 - Migrate pipeline to cloud warehouse (Snowflake/BigQuery)
+
 
 
 
