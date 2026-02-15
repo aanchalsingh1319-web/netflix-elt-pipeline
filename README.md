@@ -1,4 +1,4 @@
-# Netflix ELT Pipeline (DuckDB + Python + SQL)
+# Netflix ELT Pipeline (DuckDB + Python + SQL+ BigQuery)
 
 
 ## Why This Project?
@@ -95,6 +95,7 @@ Built an analytics layer on top of the incremental CDC table with KPI views:
   ## BI Dashboard (Looker Studio)
 
 Designed and built an interactive Looker Studio dashboard on top of BigQuery tables generated from the ELT pipeline. The dashboard presents content mix, growth trends, regional distribution, genre popularity, and recent growth markets in a clear, business-friendly layout.
+[View Dashboard](https://lookerstudio.google.com/s/j5aGDRbywzs)
 
 ## Sample Insights
 
@@ -153,6 +154,7 @@ python python/07_monitor_pipeline.py
 - Add schema change detection
 
 - Migrate pipeline to cloud warehouse (Snowflake/BigQuery)
+
 
 
 
