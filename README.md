@@ -9,7 +9,7 @@ This project demonstrates how to design and implement a production-style ELT dat
 This project implements an end-to-end ELT (Extract, Load, Transform) data pipeline using Netflix content data. The pipeline ingests raw CSV data, stores it in a Parquet-based raw layer, loads it into an analytical warehouse (DuckDB), and transforms it into cleaned, analytics-ready tables using SQL. The project also includes data quality monitoring, logging, and automation-ready scheduling.
 
 ## Architecture
-Source (CSV) → RAW Layer (Parquet) → Warehouse (DuckDB) → STAGING (SQL) → Analytics (KPIs)  
+Source (CSV) → RAW Layer (Parquet) → Warehouse (DuckDB) → STAGING (SQL) → Analytics (KPIs) → Looker (Explores & Dashboards)
 Monitoring & Logging → Automated health checks with timestamped logs
 
 ## Tech Stack
@@ -92,9 +92,56 @@ Built an analytics layer on top of the incremental CDC table with KPI views:
 - Ratings distribution  
 - Top genres (derived from listed_in)
 
+# lookml/netflix.model.lkml
+connection: "bigquery_connection"
+
+explore: analytics_netflix_current {
+  label: "Netflix Content Explore"
+}
+# lookml/analytics_netflix_current.view.lkml
+view: analytics_netflix_current {
+  sql_table_name: analytics_netflix_current ;;
+
+  dimension: show_id {
+    primary_key: yes
+    type: string
+    sql: ${TABLE}.show_id ;;
+  }
+
+  dimension: type {
+    type: string
+    sql: ${TABLE}.type ;;
+  }
+
+  dimension: country {
+    type: string
+    sql: ${TABLE}.country ;;
+  }
+
+  dimension: release_year {
+    type: number
+    sql: ${TABLE}.release_year ;;
+  }
+
+  measure: total_titles {
+    type: count
+  }
+}
+
+Designed LookML models for analytics tables to support Looker Explores and dashboards.
+
   ## BI Dashboard (Looker Studio)
 
-Designed and built an interactive Looker Studio dashboard on top of BigQuery tables generated from the ELT pipeline. The dashboard presents content mix, growth trends, regional distribution, genre popularity, and recent growth markets in a clear, business-friendly layout.
+The analytics layer is designed to integrate with Looker for business intelligence use cases.  
+In production, Looker would connect to the cloud warehouse (BigQuery/Snowflake) hosting the analytics tables and KPI views, enabling dashboards for:
+
+- Content mix (Movies vs TV Shows)  
+- Content growth trends by year  
+- Regional content distribution  
+- Genre popularity  
+- Recent country-wise growth  
+
+For hands-on validation, KPI datasets are exported from DuckDB and loaded into BigQuery, where Looker Studio dashboards are built on top of the analytics outputs & business-friendly layout.
 [View Dashboard](https://lookerstudio.google.com/s/j5aGDRbywzs)
 
 ## Sample Insights
@@ -143,6 +190,7 @@ python python/07_monitor_pipeline.py
  - Rating distribution
 
  - Genre analysis
+
 
 
 
