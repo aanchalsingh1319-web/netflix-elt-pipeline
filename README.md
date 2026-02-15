@@ -145,16 +145,6 @@ python python/07_monitor_pipeline.py
  - Genre analysis
 
 
-#### **Future Enhancements**
-
-- Add analytics layer (fact/dimension modeling)
-
-- Integrate BI dashboards
-
-- Add schema change detection
-
-- Migrate pipeline to cloud warehouse (Snowflake/BigQuery)
-
 
 
 
